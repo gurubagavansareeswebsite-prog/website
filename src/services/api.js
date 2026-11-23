@@ -1,7 +1,6 @@
 // API Configuration Production
 const API_BASE_URL = 'https://website-backend-rosy.vercel.app/api';
 
-// Fetch wrapper with error handling
 async function fetchAPI(endpoint, options = {}) {
     const url = `${API_BASE_URL}${endpoint}`;
 
